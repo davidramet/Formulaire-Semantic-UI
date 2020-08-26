@@ -1,0 +1,39 @@
+//fORMULAIRE
+<div class="ui container">
+    <form class="ui form" method="post" action="VOTRE_FICHIER_PHP">
+        <div class="field">
+            <label>NOM</label>
+            <input type="text" name="nom" placeholder="Nom" required="required">
+        </div>
+        <div class="field">
+            <label>PRENOM</label>
+            <input type="text" name="prenom" placeholder="Prénom" required="required">
+        </div>
+        <div class="field">
+            <label>COMMENTAIRE (Max 1000 Caractères)</label>
+            <textarea name="commentaire" rows="2" maxlength="1000" required="required"></textarea>
+        </div>
+        <div class="g-recaptcha" data-sitekey="VOTRE_DATA_KEY"></div>
+        <button class="ui button" type="submit" name="envoyer">Envoyer</button>
+    </form>
+</div>
+
+//AFFICHAGE DES DONNEES
+<div class="ui container">
+  <table class="ui celled table">
+    <thead>
+      <tr><th>Nom</th>
+      <th>Prénom</th>
+      <th>Commentaire</th>
+    </tr></thead>
+    <tbody>
+        <?php while($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
+          <tr>
+            <td><?php echo htmlspecialchars($row['nom']); ?></td>
+            <td><?php echo htmlspecialchars($row['prenom']); ?></td>
+            <td><?php echo htmlspecialchars($row['commentaire']); ?></td>
+          </tr>
+        <?php endwhile; ?>
+    </tbody>
+  </table>
+</div>
